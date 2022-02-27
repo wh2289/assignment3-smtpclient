@@ -3,11 +3,12 @@ from socket import *
     msg = "\r\n Go NYU Cyber Fellows!"
     endmsg = "\r\n.\r\n"
 
-    mailserver = "localhost"
-    port = 1025
+
+def smtp_client(port=1025, mailserver ='127.0.0.1'):
+
 
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver, port)
+    clientSocket.connect(mailserver)
 
 
     recv = clientSocket.recv(1024).decode()
