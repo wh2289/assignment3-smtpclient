@@ -4,7 +4,7 @@ from socket import *
     endmsg = "\r\n.\r\n"
 
     mailserver = "localhost"
-    port = 25
+    port = 1025
 
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect(mailserver, port)
