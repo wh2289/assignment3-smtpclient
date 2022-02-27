@@ -13,8 +13,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     #if recv[:3] != '220':
         #print('220 reply not received from server.')
 
-    helloCommand = 'HELLO Alice\r\n'
-    clientSocket.send(helloCommand.encode())
+    heloCommand = 'HELO Alice\r\n'
+    clientSocket.send(heloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
     #print(recv1)
     #if recv1[:3] != '250':
