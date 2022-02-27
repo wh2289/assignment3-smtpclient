@@ -36,29 +36,33 @@ def smtp_client(port=1025, mailserver ='127.0.0.1'):
     clientSocket.send(rcptto.encode())
     recv3 = clientSocket.recv(1024)
     print("Rcpt To: " + recv3)
-    if recv1[:3] != '250'
+    if recv1[:3] != '250':
         print('250 reply not received from server.')
 
     data = "Data \r\n"
     clientSocket.send(data.encode())
     recv4 = clientSocket.recv(1024)
     print("Data: " + recv4)
-    if recv1[:3] != '250'
+    if recv1[:3] != '250':
         print('250 reply not received from server.')
 
+    message = raw_input("Enter message: ")
+    mailMessageEnd = '\r\n.\r\n'
+    clientSocket.send(message + mailMessageEnd)
+    print(recv1)
+    if recv1[:3] != '250':
+        print('250 reply not received from server.')
 
-    # Send message data.
-    # Fill in start
-    # Fill in end
+    quit = "Quit\r\n"
+    print(quit)
+    clientSocket.send(quit)
+    recv1 = clientSocket.recv(1024)
+    print(recv1)
+    if recv1[:3] != '250':
+        print('250 reply not received from server.')
 
-    # Message ends with a single period, send message end and handle server response.
-    # Fill in start
-    # Fill in end
+        pass
 
-    clientSocket.send("Quit\r\n".encode())
-    messsage = clientSocket.recv(1024)
-    print(message)
-    clientSocket.close()
 
 
 if __name__ == '__main__':
