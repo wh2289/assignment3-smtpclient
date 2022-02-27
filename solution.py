@@ -31,7 +31,7 @@ def smtp_client(port=1025, mailserver ='127.0.0.1'):
     if recv1[:3] != '250':
         print('250 reply not received from server.')
 
-    rcptto = "Rcpt To : <destination@gmail.com> \r\n"
+    rcptto = "Rcpt To : <recipient@gmail.com> \r\n"
     clientSocket.send(rcptto.encode())
     recv3 = clientSocket.recv(1024)
     print("Rcpt To: " + recv3)
@@ -46,21 +46,17 @@ def smtp_client(port=1025, mailserver ='127.0.0.1'):
         print('250 reply not received from server.')
 
     message = raw_input("Enter message: ")
+
     mailMessageEnd = '\r\n.\r\n'
     clientSocket.send(message + mailMessageEnd)
     print(recv1)
     if recv1[:3] != '250':
         print('250 reply not received from server.')
 
-    quit = "Quit\r\n"
-    print(quit)
-    clientSocket.send(quit)
-    recv1 = clientSocket.recv(1024)
-    print(recv1)
-    if recv1[:3] != '250':
-        print('250 reply not received from server.')
-
-        pass
+    clientSocket.send("Quit\r\n".encode())
+    message = clientSocket.recv(1024)
+    print(message)
+    clientSocket.close()
 
 
 
