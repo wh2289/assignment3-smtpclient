@@ -37,6 +37,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     data = "DATA \r\n"
     clientSocket.send(data.encode())
     clientSocket.send(msg.encode())
+    recv4 = clientSocket.recv(1024).decode()
     clientSocket.send(endmsg.encode())
     # print("DATA: " + recv4)
     # if recv1[:3] != '250':
