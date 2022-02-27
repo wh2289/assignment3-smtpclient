@@ -6,10 +6,11 @@ def smtp_client(port=1025, mailserver ='127.0.0.1'):
     msg = "\r\n Go NYU Cyber Fellows!"
     endmsg = "\r\n.\r\n"
 
-    mailserver = ("local", 7890)
+    mailserver = "local"
+    mailport = 7890
 
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver)
+    clientSocket.connect(mailserver, mailport)
 
 
     recv = clientSocket.recv(1024).decode()
