@@ -20,9 +20,9 @@ def smtp_client(port=1025, mailserver ='127.0.0.1'):
     helloCommand = 'HELLO Alice\r\n'
     clientSocket.send(helloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
-    print(recv1)
-    if recv1[:3] != '250':
-        print('250 reply not received from server.')
+    #print(recv1)
+    #if recv1[:3] != '250':
+      # print('250 reply not received from server.')
 
     mailFrom = "Mail From: <networking@gmail.com> \r\n"
     clientSocket.send(mailFrom.encode())
