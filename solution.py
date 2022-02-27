@@ -6,19 +6,19 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
 
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver, port)
+    clientSocket.connect((mailserver, port))
 
     recv = clientSocket.recv(1024).decode()
     #print("Connection Requst:" + recv)
-        #if recv[:3] != '220':
-            #print('220 reply not received from server.')
+    #if recv[:3] != '220':
+        #print('220 reply not received from server.')
 
     helloCommand = 'HELLO Alice\r\n'
     clientSocket.send(helloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
     #print(recv1)
-        #if recv1[:3] != '250':
-            #print('250 reply not received from server.')
+    #if recv1[:3] != '250':
+        #print('250 reply not received from server.')
 
     mailFrom = "MAIL FROM: <networking@gmail.com> \r\n"
     clientSocket.send(mailFrom.encode())
@@ -35,7 +35,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
         #print('250 reply not received from server.')
 
     data = "DATA \r\n"
-    clientSocket.send(data.encode())
+    clientSocket.send(msg.encode())
+    clientSocket.send(endmsg.encode())
     recv4 = clientSocket.recv(1024).decode()
     #print("DATA: " + recv4)
     #if recv1[:3] != '250':
